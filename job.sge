@@ -1,0 +1,19 @@
+#!/bin/bash
+# Standard output and error:
+#SBATCH -o ./examplejob.out
+#SBATCH -e ./examplejob.err
+#SBATCH -D ./
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=32
+#SBATCH -J PYRO_COMMENTED
+#SBATCH --mail-type=none
+#SBATCH --partition=mpsd
+#SBATCH --time=72:00:00
+
+module load impi
+module load mkl
+
+export LD_LIBRARY_PATH="$MKL_HOME/lib/intel64"
+mpicxx -O2 -std=c++11  Pyrochlore_DRACO.cc -L$MKL_HOME/lib/intel64 -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lm
+
+srun ./a.out >log_ARPES
