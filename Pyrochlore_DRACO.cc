@@ -556,10 +556,10 @@ void set_Hk(dvec &kvec, dvec &M, cvec &Hk, dvec &MAT_BASIS, double time)
 		
 	for(int a=0; a<NORB; a++)
 	{	
-		Hk[fb(a,a,0,0)] += -U_ramp(time)*(M[fq(2,a,4)]  - (M[fq(0,a,4)]*M[fq(0,a,4)] + M[fq(1,a,4)]*M[fq(1,a,4)] + M[fq(2,a,4)]*M[fq(2,a,4)]));           // spin up-up
+		Hk[fb(a,a,0,0)] += -U_ramp(time)*(M[fq(2,a,4)]);//  - (M[fq(0,a,4)]*M[fq(0,a,4)] + M[fq(1,a,4)]*M[fq(1,a,4)] + M[fq(2,a,4)]*M[fq(2,a,4)]));           // spin up-up
 		Hk[fb(a,a,0,1)] += -U_ramp(time)*(M[fq(0,a,4)]-II*M[fq(1,a,4)]);																				  // spin up-down
 		Hk[fb(a,a,1,0)] += -U_ramp(time)*(M[fq(0,a,4)]+II*M[fq(1,a,4)]);																				  // spin down-up	    
-		Hk[fb(a,a,1,1)] += -U_ramp(time)*(-M[fq(2,a,4)] - (M[fq(0,a,4)]*M[fq(0,a,4)] + M[fq(1,a,4)]*M[fq(1,a,4)] + M[fq(2,a,4)]*M[fq(2,a,4)]));  	      // spin down-down
+		Hk[fb(a,a,1,1)] += -U_ramp(time)*(-M[fq(2,a,4)]);// - (M[fq(0,a,4)]*M[fq(0,a,4)] + M[fq(1,a,4)]*M[fq(1,a,4)] + M[fq(2,a,4)]*M[fq(2,a,4)]));  	      // spin down-down
 	
 		for(int b=0; b<NORB; b++)
 		{
